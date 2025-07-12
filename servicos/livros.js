@@ -1,35 +1,38 @@
-const fs = require('fs');
+const db = require('../db');
 
-function getTodosOsLivros() {
-    return JSON.parse(fs.readFileSync('livros.json'));
+async function getTodosOsLivros() {
+    const [rows] = await db.query('SELECT * FROM livros');
+    return rows;
 }
 
-function getLivroPorId(id) {
-    const livros = getTodosOsLivros();
-    return livros.find(livro => livro.id === id);
+async function getLivroPorId(id) {
+    const [livros] = await db.query('SELECT * FROM livros WHERE id = ?', [id]);
+    return livros[0];
 }
 
-function salvarLivro(livro) {
-    const livros = getTodosOsLivros();
-    console.log("Livro a ser salvo: ", livro);
-    livro.id = (livros.length + 1).toString();
-    livros.push(livro);
-    fs.writeFileSync('livros.json', JSON.stringify(livros));
+async function salvarLivro(livro) {
+    const { nome, autor, ano } = livro;
+    const [result] = await db.query('INSERT INTO livros (nome, autor, ano) VALUES (?, ?, ?)', [nome, autor, ano]);
+    return {
+        id: result.insertId,
+        ...livro
+    };
 }
 
-function atualizarLivro(id, livro) {
-    const livros = getTodosOsLivros();
-    const index = livros.findIndex(livro => livro.id === id);
-    const livroModificado = {...livros[index], ...livro};
-    livros[index] = livroModificado;
-    fs.writeFileSync('livros.json', JSON.stringify(livros));
+async function atualizarLivro(id, livro) {
+    const campos = [];
+    const valores = [];
+    for (const [chave, valor] of Object.entries(livro)) {
+        campos.push(`${chave} = ?`);
+        valores.push(valor);
+    }
+    valores.push(id);
+    const sql = `UPDATE livros SET ${campos.join(', ')} WHERE id = ?`;
+    await db.query(sql, valores);
 }
 
-function deletarLivro(id) {
-    const livros = getTodosOsLivros();
-    const index = livros.findIndex(livro => livro.id === id);
-    livros.splice(index, 1);
-    fs.writeFileSync('livros.json', JSON.stringify(livros));
+async function deletarLivro(id) {
+    await db.query('DELETE FROM livros WHERE id = ?', [id]);
 }
 
 module.exports = {

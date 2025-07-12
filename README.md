@@ -6,6 +6,8 @@ Projeto desenvolvido como atividade no curso de Pós-graduação em Desenvolvime
 
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
+- [MySQL](https://www.mysql.com/) (persistência dos dados)
+- [CORS](https://expressjs.com/en/resources/middleware/cors.html) (para integração com frontends)
 
 ## 📂 Estrutura do Projeto
 
@@ -17,6 +19,7 @@ Projeto desenvolvido como atividade no curso de Pós-graduação em Desenvolvime
 ├── package.json
 ├── README.md
 ├── teste.js
+├── db.js
 ├── controladores/
 │   ├── livros.js
 │   └── favoritos.js
@@ -40,6 +43,26 @@ Projeto desenvolvido como atividade no curso de Pós-graduação em Desenvolvime
    ```sh
    npm install
    ```
+
+3. Configure o banco de dados MySQL:
+   - Crie um banco de dados chamado `walberstore` (ou o nome desejado).
+   - Crie as tabelas necessárias:
+     ```sql
+     CREATE TABLE livros (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       nome VARCHAR(255) NOT NULL,
+       autor VARCHAR(255) NOT NULL,
+       ano INT
+     );
+
+     CREATE TABLE favoritos (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       nome VARCHAR(255) NOT NULL,
+       livro_id INT,
+       FOREIGN KEY (livro_id) REFERENCES livros(id)
+     );
+     ```
+   - Configure a conexão no arquivo `db.js` com suas credenciais do MySQL.
 
 ## ▶️ Como Executar
 
@@ -70,6 +93,11 @@ O servidor estará disponível em: [http://localhost:8000](http://localhost:8000
 - `GET /favoritos/:id` — Busca um favorito pelo ID
 - `POST /favoritos` — Adiciona um novo favorito
 - `DELETE /favoritos/:id` — Remove um favorito
+
+## 🌐 Integração com Frontend
+
+Este backend foi desenvolvido para integração com o frontend [DjanBooks](https://github.com/DjanInfo/DjanBooks).  
+Basta rodar ambos os projetos e garantir que o frontend aponte para o endereço do backend (por padrão, `http://localhost:8000`).
 
 ## 📬 Collection Postman
 

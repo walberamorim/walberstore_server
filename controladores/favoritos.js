@@ -4,52 +4,50 @@ const {
     salvarFavorito,
     deletarFavorito 
 } = require('../servicos/favoritos');
-
 const { getLivroPorId } = require('../servicos/livros');
 
-function getFavoritos(req, res) {
+async function getFavoritos(req, res) {
     try {
-        const favoritos = getTodosOsFavoritos();
+        const favoritos = await getTodosOsFavoritos();
         res.send(favoritos);
     } catch (error) {
         res.status(500).send(error);
     }
 }
 
-function getFavorito(req, res) {
+async function getFavorito(req, res) {
     try {
         const id = Number(req.params.id);
         if (!id || Number.isNaN(id)) {
             return res.status(422).send('Id do favorito deve ser um número válido');
         }
-        const favorito = getFavoritoPorId(id);
+        const favorito = await getFavoritoPorId(id);
+        if (!favorito) {
+            return res.status(404).send('Favorito não encontrado');
+        }
         res.send(favorito);
     } catch (error) {
         res.status(500).send(error);
     }
 }
 
-function postFavorito(req, res) {
+async function postFavorito(req, res) {
     try {
-        const id = Number(req.params.id);
-        const livro = getLivroPorId(id);
-        if (!livro.nome) {
-            return res.status(422).send('O nome do favorito deve ser informado');
-        }
-        salvarFavorito(livro);
-        res.send('Favorito salvo com sucesso!');
+        const id = req.params.id;
+        const livro = await getLivroPorId(id);
+        console.log("id: " + id);
+        console.log(livro);
+        const favoritoSalvo = await salvarFavorito(livro);
+        res.status(201).send('Favorito salvo com sucesso!');
     } catch (error) {
         res.status(500).send(error);
     }
 }
 
-function deleteFavorito(req, res) {
+async function deleteFavorito(req, res) {
     try {
         const id = Number(req.params.id);
-        if (!id || Number.isNaN(id)) {
-            return res.status(422).send('Id do favorito deve ser um número válido');
-        }
-        deletarFavorito(id);
+        await deletarFavorito(id);
         res.send('Favorito deletado com sucesso!');
     } catch (error) {
         res.status(500).send(error);

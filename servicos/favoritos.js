@@ -1,25 +1,29 @@
-const fs = require('fs');
+const db = require('../db');
 
-function getTodosOsFavoritos() {
-    return JSON.parse(fs.readFileSync('favoritos.json'));
+async function getTodosOsFavoritos() {
+    const [rows] = await db.query('SELECT * FROM favoritos');
+    return rows;
 }
 
-function getFavoritoPorId(id) {
-    const favoritos = getTodosOsFavoritos();
-    return favoritos.find(favorito => favorito.id === id);
+async function getFavoritoPorId(id) {
+    const [rows] = await db.query('SELECT * FROM favoritos WHERE id = ?', [id]);
+    return rows[0];
 }
 
-function salvarFavorito(favorito) {
-    const favoritos = getTodosOsFavoritos();
-    favoritos.push(favorito);
-    fs.writeFileSync('favoritos.json', JSON.stringify(favoritos));
+async function salvarFavorito(favorito) {
+    const { nome, autor, ano } = favorito;
+    const [result] = await db.query(
+        'INSERT INTO favoritos (nome, autor, ano) VALUES (?, ?, ?)', 
+        [nome, autor, ano]
+    );
+    return {
+        id: result.insertId,
+        ...favorito
+    };
 }
 
-function deletarFavorito(id) {
-    const favoritos = getTodosOsFavoritos();
-    const index = favoritos.findIndex(fav => fav.id === id);
-    favoritos.splice(index, 1);
-    fs.writeFileSync('favoritos.json', JSON.stringify(favoritos));
+async function deletarFavorito(id) {
+    await db.query('DELETE FROM favoritos WHERE id = ?', [id]);
 }
 
 module.exports = {
