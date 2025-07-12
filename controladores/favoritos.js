@@ -35,8 +35,6 @@ async function postFavorito(req, res) {
     try {
         const id = req.params.id;
         const livro = await getLivroPorId(id);
-        console.log("id: " + id);
-        console.log(livro);
         const favoritoSalvo = await salvarFavorito(livro);
         res.status(201).send('Favorito salvo com sucesso!');
     } catch (error) {
