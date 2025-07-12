@@ -40,19 +40,6 @@ function postFavorito(req, res) {
     }
 }
 
-function patchFavorito(req, res) {
-    try {
-        const id = Number(req.params.id);
-        if (!id || Number.isNaN(id)) {
-            return res.status(422).send('Id do favorito deve ser um número válido');
-        }
-        atualizarFavorito(id, req.body);
-        res.send('Favorito atualizado com sucesso!');
-    } catch (error) {
-        res.status(500).send(error);
-    }
-}
-
 function deleteFavorito(req, res) {
     try {
         const id = Number(req.params.id);
@@ -70,6 +57,5 @@ module.exports = {
     getFavoritos,
     getFavorito,
     postFavorito,
-    patchFavorito,
     deleteFavorito,
 }

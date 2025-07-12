@@ -69,7 +69,6 @@ O servidor estará disponível em: [http://localhost:8000](http://localhost:8000
 - `GET /favoritos` — Lista todos os favoritos
 - `GET /favoritos/:id` — Busca um favorito pelo ID
 - `POST /favoritos` — Adiciona um novo favorito
-- `PATCH /favoritos/:id` — Atualiza um favorito existente
 - `DELETE /favoritos/:id` — Remove um favorito
 
 ## 📬 Collection Postman

@@ -15,14 +15,6 @@ function salvarFavorito(favorito) {
     fs.writeFileSync('favoritos.json', JSON.stringify(favoritos));
 }
 
-function atualizarFavorito(id, favorito) {
-    const favoritos = getTodosOsFavoritos();
-    const index = favoritos.findIndex(fav => fav.id === id);
-    const favoritoModificado = { ...favoritos[index], ...favorito };
-    favoritos[index] = favoritoModificado;
-    fs.writeFileSync('favoritos.json', JSON.stringify(favoritos));
-}
-
 function deletarFavorito(id) {
     const favoritos = getTodosOsFavoritos();
     const index = favoritos.findIndex(fav => fav.id === id);
@@ -34,6 +26,5 @@ module.exports = {
     getTodosOsFavoritos,
     getFavoritoPorId,
     salvarFavorito,
-    atualizarFavorito,
     deletarFavorito,
 }
