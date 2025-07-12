@@ -193,35 +193,6 @@
 		{
 			"name": "http://localhost:8000/favoritos/12",
 			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\": 12,\r\n    \"nome\": \"Harry Potter e a ordem da fenix\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/favoritos/12",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"favoritos",
-						"12"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8000/favoritos/12",
-			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {

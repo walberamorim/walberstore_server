@@ -1,8 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const rotaLivros = require('./rotas/livros');
 const rotaFavoritos = require('./rotas/favoritos');
 const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: "*"
+}));
 const port = 8000;
 
 app.use('/livros', rotaLivros);
