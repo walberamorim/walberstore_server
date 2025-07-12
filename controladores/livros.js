@@ -1,4 +1,4 @@
-const {getTodosOsLivros, getLivroPorId, salvarLivro, atualizarLivro, deletarLivro} = require('../servicos/livros');
+const { getTodosOsLivros, getLivroPorId, salvarLivro, atualizarLivro, deletarLivro } = require('../servicos/livros');
 function getLivros(req, res) {
     try {
         const livros = getTodosOsLivros();
@@ -10,7 +10,11 @@ function getLivros(req, res) {
 
 function getLivro(req, res) {
     try {
-        const livro = getLivroPorId(req.params.id);
+        const id = Number(req.params.id);
+        if (!id || Number.isNaN(id)) {
+            return res.status(422).send('Id do livro deve ser um número válido');
+        }
+        const livro = getLivroPorId(id);
         res.send(livro);
     } catch (error) {
         res.status(500).send(error);
@@ -19,6 +23,9 @@ function getLivro(req, res) {
 
 function postLivro(req, res) {
     try {
+        if (!req.body.nome) {
+            return res.status(422).send('O nome do livro deve ser informado');
+        }
         salvarLivro(req.body);
         res.send('Livro salvo com sucesso!');
     } catch (error) {
@@ -28,7 +35,11 @@ function postLivro(req, res) {
 
 function patchLivro(req, res) {
     try {
-        atualizarLivro(req.params.id, req.body);
+        const id = Number(req.params.id);
+        if (!id || Number.isNaN(id)) {
+            return res.status(422).send('Id do livro deve ser um número válido');
+        }
+        atualizarLivro(id, req.body);
         res.send('Livro atualizado com sucesso!');
     } catch (error) {
         res.status(500).send(error);
@@ -37,7 +48,11 @@ function patchLivro(req, res) {
 
 function deleteLivro(req, res) {
     try {
-        deletarLivro(req.params.id);
+        const id = Number(req.params.id);
+        if (!id || Number.isNaN(id)) {
+            return res.status(422).send('Id do livro deve ser um número válido');
+        }
+        deletarLivro(id);
         res.send('Livro deletado com sucesso!');
     } catch (error) {
         res.status(500).send(error);

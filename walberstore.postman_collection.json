@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "63460bf6-9cda-4849-9cc7-e136706b31c8",
+		"name": "programacao_web_I",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45271716",
+		"_collection_link": "https://walber-3311667.postman.co/workspace/Walber's-Workspace~e1d5922f-e8de-4e93-8d37-5439ef3b3b59/collection/45271716-63460bf6-9cda-4849-9cc7-e136706b31c8?action=share&source=collection_link&creator=45271716"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/livros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/livros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"livros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/livros/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/livros/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"livros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/livros",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"5\",\r\n    \"nome\": \"O Hobbit\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/livros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"livros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/livros/2",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"2\",\r\n    \"nome\": \"Harry Potter e o Cálice de Fogo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/livros/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"livros",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/livros/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/livros/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"livros",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/favoritos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/favoritos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"favoritos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/favoritos/12",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/favoritos/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"favoritos",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/favoritos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"999\",\r\n    \"nome\": \"Piratas no Caribe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/favoritos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"favoritos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/favoritos/12",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 12,\r\n    \"nome\": \"Harry Potter e a ordem da fenix\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/favoritos/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"favoritos",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/favoritos/12",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/favoritos/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"favoritos",
+						"12"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
