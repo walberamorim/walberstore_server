@@ -1,14 +1,17 @@
 [
     {
         "id": 1,
-        "nome": "Don Quixote"
+        "nome": "Don Quixote",
+        "src": "https://icon-library.com/images/image-placeholder-icon/image-placeholder-icon-5.jpg"
     },
     {
         "id": 2,
-        "nome": "Harry Potter e a Pedra Filosofal"
+        "nome": "Harry Potter e a Pedra Filosofal",
+        "src": "https://icon-library.com/images/image-placeholder-icon/image-placeholder-icon-5.jpg"
     },
     {
         "id": 3,
-        "nome": "O Senhor dos Aneis: A Sociedade do Anel"
+        "nome": "O Senhor dos Aneis: A Sociedade do Anel",
+        "src": "https://icon-library.com/images/image-placeholder-icon/image-placeholder-icon-5.jpg"
     }
 ]

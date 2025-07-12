@@ -11,7 +11,7 @@ const {
 router.get('/', getFavoritos);
 router.get('/:id', getFavorito);
 
-router.post('/', postFavorito);
+router.post('/:id', postFavorito);
 
 router.delete('/:id', deleteFavorito);
 

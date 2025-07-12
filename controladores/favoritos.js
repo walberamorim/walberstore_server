@@ -1,10 +1,11 @@
 const { 
     getTodosOsFavoritos, 
-    getFavoritoPorId, 
-    salvarFavorito, 
-    atualizarFavorito, 
+    getFavoritoPorId,
+    salvarFavorito,
     deletarFavorito 
 } = require('../servicos/favoritos');
+
+const { getLivroPorId } = require('../servicos/livros');
 
 function getFavoritos(req, res) {
     try {
@@ -30,10 +31,12 @@ function getFavorito(req, res) {
 
 function postFavorito(req, res) {
     try {
-        if (!req.body.nome) {
+        const id = Number(req.params.id);
+        const livro = getLivroPorId(id);
+        if (!livro.nome) {
             return res.status(422).send('O nome do favorito deve ser informado');
         }
-        salvarFavorito(req.body);
+        salvarFavorito(livro);
         res.send('Favorito salvo com sucesso!');
     } catch (error) {
         res.status(500).send(error);
