@@ -1,10 +1,9 @@
-const { 
+import { 
     getTodosOsFavoritos, 
     getFavoritoPorId, 
-    salvarFavorito, 
-    atualizarFavorito, 
+    salvarFavorito,
     deletarFavorito 
-} = require('../servicos/favoritos');
+} from '../servicos/favoritos.js';
 
 function getFavoritos(req, res) {
     try {
@@ -29,6 +28,7 @@ function getFavorito(req, res) {
 }
 
 function postFavorito(req, res) {
+    const id = Number(req.params.id);
     try {
         if (!req.body.nome) {
             return res.status(422).send('O nome do favorito deve ser informado');
@@ -53,7 +53,7 @@ function deleteFavorito(req, res) {
     }
 }
 
-module.exports = {
+export {
     getFavoritos,
     getFavorito,
     postFavorito,

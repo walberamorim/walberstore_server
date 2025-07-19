@@ -1,18 +1,12 @@
-const { Router } = require('express');
+import { Router } from 'express';
+import { getFavoritos, getFavorito, postFavorito, deleteFavorito } from '../controladores/favoritos.js';
 const router = Router();
-
-const {
-    getFavoritos,
-    getFavorito,
-    postFavorito,
-    deleteFavorito
-} = require('../controladores/favoritos');
 
 router.get('/', getFavoritos);
 router.get('/:id', getFavorito);
 
-router.post('/', postFavorito);
+router.post('/:id', postFavorito);
 
 router.delete('/:id', deleteFavorito);
 
-module.exports = router;
+export default router;

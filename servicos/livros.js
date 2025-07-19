@@ -1,41 +1,42 @@
-const fs = require('fs');
+import livros from '../models/Livros.js';
 
-function getTodosOsLivros() {
-    return JSON.parse(fs.readFileSync('livros.json'));
+async function getTodosOsLivros() {
+    const listalivros = await livros.find({});
+    return listalivros;
 }
 
-function getLivroPorId(id) {
-    const livros = getTodosOsLivros();
-    return livros.find(livro => livro.id === id);
+async function getLivroPorId(id) {
+    return await livros.findById(id);
 }
 
-function salvarLivro(livro) {
-    const livros = getTodosOsLivros();
-    console.log("Livro a ser salvo: ", livro);
-    livro.id = (livros.length + 1).toString();
-    livros.push(livro);
-    fs.writeFileSync('livros.json', JSON.stringify(livros));
+async function salvarLivro(livro) {
+    try {
+        livros.create(livro);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function atualizarLivro(id, livro) {
-    const livros = getTodosOsLivros();
-    const index = livros.findIndex(livro => livro.id === id);
-    const livroModificado = {...livros[index], ...livro};
-    livros[index] = livroModificado;
-    fs.writeFileSync('livros.json', JSON.stringify(livros));
+async function atualizarLivro(id, livro) {
+    try {
+        const livroAtt = await livros.findByIdAndUpdate(id, livro);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function deletarLivro(id) {
-    const livros = getTodosOsLivros();
-    const index = livros.findIndex(livro => livro.id === id);
-    livros.splice(index, 1);
-    fs.writeFileSync('livros.json', JSON.stringify(livros));
+async function deletarLivro(id) {
+    try {
+        await livros.findByIdAndDelete(id);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-module.exports = {
+export {
     getTodosOsLivros,
     getLivroPorId,
     salvarLivro,
     atualizarLivro,
     deletarLivro,
-}
+};

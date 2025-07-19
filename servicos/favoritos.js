@@ -1,28 +1,30 @@
-const fs = require('fs');
+import Favoritos from '../models/Favoritos.js';
 
-function getTodosOsFavoritos() {
-    return JSON.parse(fs.readFileSync('favoritos.json'));
+async function getTodosOsFavoritos() {
+    return await Favoritos.find({});
 }
 
-function getFavoritoPorId(id) {
-    const favoritos = getTodosOsFavoritos();
-    return favoritos.find(favorito => favorito.id === id);
+async function getFavoritoPorId(id) {
+    return await Favoritos.findById(id);
 }
 
-function salvarFavorito(favorito) {
-    const favoritos = getTodosOsFavoritos();
-    favoritos.push(favorito);
-    fs.writeFileSync('favoritos.json', JSON.stringify(favoritos));
+async function salvarFavorito(favorito) {
+    try {
+        await Favoritos.create(favorito);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-function deletarFavorito(id) {
-    const favoritos = getTodosOsFavoritos();
-    const index = favoritos.findIndex(fav => fav.id === id);
-    favoritos.splice(index, 1);
-    fs.writeFileSync('favoritos.json', JSON.stringify(favoritos));
+async function deletarFavorito(id) {
+    try {
+        await Favoritos.findByIdAndDelete(id);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-module.exports = {
+export {
     getTodosOsFavoritos,
     getFavoritoPorId,
     salvarFavorito,
