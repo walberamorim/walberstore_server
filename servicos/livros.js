@@ -11,8 +11,8 @@ async function getLivroPorId(id) {
 }
 
 async function salvarLivro(livro) {
-    const { nome, autor, ano } = livro;
-    const [result] = await db.query('INSERT INTO livros (nome, autor, ano) VALUES (?, ?, ?)', [nome, autor, ano]);
+    const { nome, ano, autor_id } = livro;
+    const [result] = await db.query('INSERT INTO livros (nome, ano, autor_id) VALUES (?, ?, ?)', [nome, ano, autor_id]);
     return {
         id: result.insertId,
         ...livro
@@ -35,10 +35,21 @@ async function deletarLivro(id) {
     await db.query('DELETE FROM livros WHERE id = ?', [id]);
 }
 
+async function getLivrosPorNomeAutor(nomeAutor) {
+    const [rows] = await db.query(
+        `SELECT livros.* FROM livros
+         INNER JOIN autor ON livros.autor_id = autor.id
+         WHERE autor.nome LIKE ?`,
+        [`%${nomeAutor}%`]
+    );
+    return rows;
+}
+
 module.exports = {
     getTodosOsLivros,
     getLivroPorId,
     salvarLivro,
     atualizarLivro,
     deletarLivro,
+    getLivrosPorNomeAutor,
 }

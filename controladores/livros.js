@@ -1,4 +1,4 @@
-const { getTodosOsLivros, getLivroPorId, salvarLivro, atualizarLivro, deletarLivro } = require('../servicos/livros');
+const { getTodosOsLivros, getLivroPorId, salvarLivro, atualizarLivro, deletarLivro, getLivrosPorNomeAutor } = require('../servicos/livros');
 async function getLivros(req, res) {
     try {
         const livros = await getTodosOsLivros();
@@ -50,10 +50,24 @@ function deleteLivro(req, res) {
     }
 }
 
+async function getLivrosPorAutor(req, res) {
+    try {
+        const nomeAutor = req.query.nome;
+        if (!nomeAutor) {
+            return res.status(400).send('Informe o nome do autor na query string (?nome=...)');
+        }
+        const livros = await getLivrosPorNomeAutor(nomeAutor);
+        res.send(livros);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 module.exports = {
     getLivros,
     getLivro,
     postLivro,
     patchLivro,
     deleteLivro,
+    getLivrosPorAutor,
 }
