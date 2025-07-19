@@ -1,9 +1,12 @@
 import { Router } from 'express';
 const router = Router();
 
-import { getLivros, getLivro, postLivro, patchLivro, deleteLivro } from '../controladores/livros.js';
+import { getLivros, getLivro, postLivro, patchLivro, deleteLivro, getLivrosEditora } from '../controladores/livros.js';
 
 router.get('/', getLivros);
+
+router.get('/busca', getLivrosEditora);
+
 router.get('/:id', getLivro);
 
 router.post('/', postLivro);

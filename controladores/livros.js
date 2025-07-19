@@ -1,7 +1,17 @@
-import { getTodosOsLivros, getLivroPorId, salvarLivro, atualizarLivro, deletarLivro } from '../servicos/livros.js';
+import { getTodosOsLivros, getLivroPorId, salvarLivro, atualizarLivro, deletarLivro, getLivrosPorEditora } from '../servicos/livros.js';
 async function getLivros(req, res) {
     try {
         const livros = await getTodosOsLivros();
+        res.send(livros);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+async function getLivrosEditora(req, res) {
+    try {
+        const editora = req.query.editora;
+        const livros = await getLivrosPorEditora(editora);
         res.send(livros);
     } catch (error) {
         res.status(500).send(error);
@@ -53,4 +63,5 @@ export {
     postLivro,
     patchLivro,
     deleteLivro,
+    getLivrosEditora,
 };

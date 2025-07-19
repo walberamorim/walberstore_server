@@ -3,6 +3,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import rotaLivros from './rotas/livros.js';
 import rotaFavoritos from './rotas/favoritos.js';
+import rotaAutores from './rotas/autores.js';
+import "dotenv/config";
 
 const app = express();
 
@@ -21,6 +23,7 @@ mongoose.connection.once('open', () => console.log('Conectado ao banco de dados'
 
 app.use('/livros', rotaLivros);
 app.use('/favoritos', rotaFavoritos);
+app.use('/autores', rotaAutores);
 
 app.listen(port, () => {
     console.log(`Exemplo rodando no http://localhost:${port}`);

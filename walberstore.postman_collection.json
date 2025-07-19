@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"5\",\r\n    \"nome\": \"O Hobbit\"\r\n}",
+					"raw": "{\r\n        \"nome\": \"Harry Potter e a pedra filosofal\",\r\n        \"editora\": \"Junho\",\r\n        \"preco\": 10,\r\n        \"paginas\": 200,\r\n        \"autor\": \"687ba6a435ac58089a57410e\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,7 +81,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"2\",\r\n    \"nome\": \"Harry Potter e o Cálice de Fogo\"\r\n}",
+					"raw": "{\r\n        \"_id\": \"687baccaa547323a6e5058de\",\r\n        \"nome\": \"A Malandragem X\",\r\n        \"editora\": \"Abril\",\r\n        \"preco\": 2222,\r\n        \"paginas\": 200,\r\n        \"autor\": \"687ba70835ac58089a574111\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,7 +89,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/livros/2",
+					"raw": "http://localhost:8000/livros/687baccaa547323a6e5058de",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -97,7 +97,7 @@
 					"port": "8000",
 					"path": [
 						"livros",
-						"2"
+						"687baccaa547323a6e5058de"
 					]
 				}
 			},
@@ -163,13 +163,13 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8000/favoritos",
+			"name": "http://localhost:8000/favoritos/2",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"999\",\r\n    \"nome\": \"Piratas no Caribe\"\r\n}",
+					"raw": "{\r\n    \"nome\": \"Harry Potter e a Pedra Filosofal\",\r\n    \"autor\": \"Ele mesmo\",\r\n    \"ano\": 1994\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -177,26 +177,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/favoritos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"favoritos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8000/favoritos/12",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/favoritos/12",
+					"raw": "http://localhost:8000/favoritos/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -204,7 +185,100 @@
 					"port": "8000",
 					"path": [
 						"favoritos",
-						"12"
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/favoritos/2",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/favoritos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"favoritos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/autores",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Marcio da Villa\",\r\n    \"nacionalidade\": \"Brasileiro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/autores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"autores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/autores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/autores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"autores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/livros/busca",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/livros/busca?editora=Abril",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"livros",
+						"busca"
+					],
+					"query": [
+						{
+							"key": "editora",
+							"value": "Abril"
+						}
 					]
 				}
 			},
